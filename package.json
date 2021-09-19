@@ -1,0 +1,24 @@
+{
+  "name": "appco",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm start",
+    "backend": "cd server && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarchD/AppCo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarchD/AppCo/issues"
+  },
+  "homepage": "https://github.com/MarchD/AppCo#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  }
+}
