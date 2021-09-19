@@ -1,0 +1,7 @@
+@import "src/styles/mixins";
+@import "src/styles/vars";
+
+.title {
+  margin-bottom: 16px;
+  @include title;
+}

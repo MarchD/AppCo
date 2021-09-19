@@ -1,0 +1,12 @@
+@import "src/styles/vars";
+@import "src/styles/mixins";
+
+.link {
+  @include flex-center;
+  width: 156px;
+  height: 56px;
+  color: $blue;
+  background-color: $white;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,46 @@
+@import "src/styles/vars";
+
+.breadcrumbs {
+  display: flex;
+  column-gap: 8px;
+  padding: 15px 0;
+}
+
+.link {
+  position: relative;
+  color: $gray-elements;
+}
+
+.separator {
+  position: relative;
+  display: block;
+  transform: rotate(-90deg);
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    content: "";
+    width: 1px;
+    height: 7px;
+    border-radius: 2px;
+    background-color: $gray-elements;
+    transform: rotate(-45deg) translateY(-50%);
+  }
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    content: "";
+    width: 1px;
+    height: 7px;
+    border-radius: 2px;
+    background-color: $gray-elements;
+    transform: rotate(45deg) translateY(-50%);
+  }
+}
+
+.active {
+  color: $blue;
+}

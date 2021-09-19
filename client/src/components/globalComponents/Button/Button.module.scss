@@ -1,0 +1,11 @@
+@import "src/styles/vars";
+@import "src/styles/mixins";
+
+.button {
+  height: 56px;
+  width: 176px;
+  color: $white;
+  background-color: $blue;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,23 @@
+@import "styles/fonts";
+@import "styles/vars";
+@import "styles/reset";
+@import "styles/mixins";
+
+body {
+  @include general-text;
+  color: $black;
+}
+
+button {
+  @include general-text;
+}
+
+input {
+  @include general-text;
+  color: $black;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}

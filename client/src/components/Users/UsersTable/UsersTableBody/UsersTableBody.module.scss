@@ -1,0 +1,30 @@
+@import "src/styles/mixins";
+@import "src/styles/vars";
+
+.row {
+  background-color: $gray-lightest;
+
+  &:nth-child(even) {
+    background-color: $gray-light;
+  }
+
+  &:last-child {
+    td {
+      &:first-child {
+        border-bottom-left-radius: 10px;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+
+  td {
+    padding: 6px 24px;
+  }
+}
+
+.center {
+  text-align: center;
+}

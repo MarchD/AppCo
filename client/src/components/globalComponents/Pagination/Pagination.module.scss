@@ -1,0 +1,7 @@
+@import "src/styles/vars";
+@import "src/styles/mixins";
+
+.pagination {
+  @include flex-center;
+  column-gap: 8px;
+}

@@ -48,14 +48,30 @@ class UserController {
     const {id} = req.params;
 
     const user = await User.findOne({
+      include: [{
+        model: UserStatistic,
+        attributes: ['clicks', 'page_views']
+      }],
       where: {id},
     })
+
+    const parsedUser = JSON.parse(JSON.stringify(user));
+
+    const userStatistic = parsedUser.user_statistics.reduce((acc, statistic) => {
+        acc.total_page_views += statistic.page_views;
+        acc.total_clicks += statistic.clicks;
+
+      return acc;
+    }, {total_page_views: 0, total_clicks: 0});
+
+
+    delete parsedUser.user_statistics;
 
     if (!id) {
       return next(ApiError.badRequest('Index not specified'))
     }
 
-    res.json(user);
+    res.json({...parsedUser, ...userStatistic});
   }
 }
 

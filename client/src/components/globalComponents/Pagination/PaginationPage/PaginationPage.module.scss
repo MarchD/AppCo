@@ -1,0 +1,19 @@
+@import "src/styles/vars";
+@import "src/styles/mixins";
+
+.page {
+  @include flex-center;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  border: 2px solid $gray-light;
+  transition: background-color 0.3s linear,
+  border-color 0.3s linear;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+  }
+}

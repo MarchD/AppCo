@@ -1,0 +1,9 @@
+@import "src/styles/vars";
+
+.main {
+  padding-top: 20px;
+  background-image: url("../../assets/images/backgroud-top.svg"), url("../../assets/images/background-bottom.svg");
+  background-position: 50% -10%, bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}

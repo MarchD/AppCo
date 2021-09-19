@@ -1,0 +1,9 @@
+@import "src/styles/vars";
+@import "src/styles/mixins";
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+}
