@@ -4,7 +4,9 @@ const {User, UserStatistic} = require('../models/models');
 
 class UserController {
   async getAll(req, res) {
-    const {limit = 16, page = 1} = req.query;
+    const {limit = 16, page = 3} = req.query;
+    console.log(req)
+    console.log(page)
     let offset = page * limit - limit;
 
     const countOfUsers = await User.count();
@@ -38,7 +40,7 @@ class UserController {
     return res.json({
       data: usersWithStatistic,
       meta: {
-        currentPage: page,
+        currentPage: +page,
         lastPage: Math.ceil(countOfUsers / limit)
       }
     });

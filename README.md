@@ -2,7 +2,6 @@
 ## AppCo
 
 - React
-- Redux
 - Node js
 - Express
 - SQLite

@@ -1,23 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Pagination.module.scss';
 import {PaginationArrow} from "./PaginationArrow";
 import {PaginationPage} from "./PaginationPage";
 
-export const Pagination = ({page, countOfPage}) => (
-  <div className={styles.pagination}>
-    <PaginationArrow
+export const Pagination = ({
+                               page,
+                               countOfPage,
+                               toPage
+                           }) => {
 
-    />
-    {
-      Array(countOfPage).slice(0, 6).map(onePage => (
-        <PaginationPage page={onePage} currentPage={page}/>
-        )
-      )
-    }
+    useEffect(() => {}, page);
 
-      <PaginationArrow
-        right
-      />
+    const toNextPage = () => {
+        if (page <= countOfPage) {
+            toPage(page + 1);
+        }
+    };
 
-  </div>
-);
+    const toPrevPage = () => {
+        if (page > 1) {
+            toPage(page - 1);
+        }
+    };
+
+    return (
+        <div className={styles.pagination}>
+            <PaginationArrow onClick={toPrevPage}/>
+            {
+                Array(countOfPage).fill('').slice(page - 1, page + 4).map((onePage, i) => (
+                        <PaginationPage
+                            page={page + i}
+                            currentPage={page}
+                            toPage={toPage}
+                        />
+                    )
+                )
+            }
+            <PaginationArrow right onClick={toNextPage}/>
+        </div>
+    )
+};
