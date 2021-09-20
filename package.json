@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MarchD/AppCo#readme",
   "dependencies": {
-    "concurrently": "^6.2.1"
+    "concurrently": "^6.2.1",
+    "react-intersection-observer": "^8.32.1"
   }
 }

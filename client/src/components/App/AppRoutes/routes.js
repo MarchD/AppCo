@@ -1,6 +1,8 @@
 import {MAIN_PAGE_ROUTE, USERS_PAGE_ROUTER} from "./routesConst";
 import {Main} from "../../Main";
-import {Users} from "../../Users";
+import React from "react";
+
+const Users = React.lazy(() => import('../../Users/index'));
 
 export const routes = [
   {
@@ -11,4 +13,4 @@ export const routes = [
     path: USERS_PAGE_ROUTER,
     component: Users
   },
-]
+];
