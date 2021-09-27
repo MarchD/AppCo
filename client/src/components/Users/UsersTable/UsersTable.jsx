@@ -1,11 +1,11 @@
 import React from 'react';
-import './UsersTable.module.scss';
+import styles from './UsersTable.module.scss';
 import {UsersTableHead} from "./UsersTableHead";
 import {UsersTableBody} from "./UsersTableBody";
 
 export const UsersTable = () => {
   return (
-    <table>
+    <table className={styles.table}>
       <UsersTableHead />
       <UsersTableBody />
     </table>

@@ -12,7 +12,7 @@ export const Pagination = ({
     useEffect(() => {}, page);
 
     const toNextPage = () => {
-        if (page <= countOfPage) {
+        if (page < countOfPage) {
             toPage(page + 1);
         }
     };
@@ -23,18 +23,48 @@ export const Pagination = ({
         }
     };
 
+    const countOfPages = 5;
+
+    const first = () => {
+        if (page <= Math.ceil(countOfPages / 2)) return 1;
+        if (page >= countOfPage - 3) return countOfPage - 5;
+        return page - 1;
+    }
+
+    const second = () => {
+        if (page <= Math.ceil(countOfPages / 2)) return countOfPages + 1;
+        if (page >= countOfPage - 3) return countOfPage;
+        return page + 4;
+    }
+
+    const pageItem = (i) => {
+        if (page <= Math.ceil(countOfPages / 2))  return 1 + i;
+        if (page >= countOfPage - 1)  return first() + i + 1;
+        if (page === countOfPage - 3) return first() + i;
+        return page + i - 2;
+    }
+
     return (
         <div className={styles.pagination}>
             <PaginationArrow onClick={toPrevPage}/>
             {
-                Array(countOfPage).fill('').slice(page - 1, page + 4).map((onePage, i) => (
-                        <PaginationPage
-                            page={page + i}
-                            currentPage={page}
-                            toPage={toPage}
-                        />
+                page >= countOfPage - 1
+                    ? Array(countOfPage).fill('').slice(first()).map((onePage, i) => (
+                            <PaginationPage
+                                page={pageItem(i)}
+                                currentPage={page}
+                                toPage={toPage}
+                            />
+                        )
                     )
-                )
+                    : Array(countOfPage).fill('').slice(first(), second()).map((onePage, i) => (
+                            <PaginationPage
+                                page={pageItem(i)}
+                                currentPage={page}
+                                toPage={toPage}
+                            />
+                        )
+                    )
             }
             <PaginationArrow right onClick={toNextPage}/>
         </div>

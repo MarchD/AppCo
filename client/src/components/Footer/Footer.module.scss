@@ -1,0 +1,14 @@
+@import "src/styles/vars";
+
+.header {
+  height: 57px;
+  background-color: $blue-dark;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  color: $white;
+}

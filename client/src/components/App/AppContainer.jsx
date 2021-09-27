@@ -7,7 +7,8 @@ export const AppContext = createContext({
     pageData: {
         lastPage: 1,
         currentPage: 1
-    }
+    },
+    isLoader: false
 });
 
 export const AppContainer = (props = null) => {
@@ -16,9 +17,10 @@ export const AppContainer = (props = null) => {
         lastPage: 1,
         currentPage: 1
     });
+    const [isLoader, setIsLoader] = useState(false);
 
     const getAllUsers = (page) => {
-        console.log(page)
+        setIsLoader(true);
         getUsers(page)
             .then(res => {
                 setUsers(res.data);
@@ -33,6 +35,8 @@ export const AppContainer = (props = null) => {
                         lastPage: res.meta.lastPage,
                     }));
                 }
+
+                setIsLoader(false);
             })
             .catch(e => console.log(e));
     }
@@ -41,7 +45,8 @@ export const AppContainer = (props = null) => {
         <AppContext.Provider value={{
             users,
             getAllUsers,
-            pageData
+            pageData,
+            isLoader
         }}>
             {props.children}
         </AppContext.Provider>
