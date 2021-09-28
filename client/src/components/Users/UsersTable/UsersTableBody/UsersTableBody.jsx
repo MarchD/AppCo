@@ -1,16 +1,22 @@
 import React, {useContext} from 'react';
 import styles from './UsersTableBody.module.scss';
 import {AppContext} from "../../../App/AppContainer";
+import {useHistory} from "react-router-dom";
 
 export const UsersTableBody = () => {
     const {users} = useContext(AppContext);
+    const history = useHistory();
+
+    const goToUser = (id) => {
+        history.push(`/user/${id}`);
+    }
 
     return (
         <tbody>
         {
             users.map(user => (
                 <tr key={user.id} className={styles.row}>
-                    <td className={styles.center}>
+                    <td className={styles.center} onClick={() => goToUser(user.id)}>
                         {user.id}
                     </td>
                     <td>

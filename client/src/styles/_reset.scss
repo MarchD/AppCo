@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 // Default
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -59,3 +63,11 @@ button, input { line-height: normal; }
 // Table
 table { border-collapse: collapse; border-spacing: 0; }
 td, th { padding: 0; text-align: left; }
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}

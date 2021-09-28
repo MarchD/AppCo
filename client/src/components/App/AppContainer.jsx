@@ -1,14 +1,30 @@
 import {createContext, useState} from "react";
-import {getUsers} from "../../api/API";
+import {getUser, getUsers} from "../../api/API";
+
+const initialUser = {
+    createdAt: "",
+    email: "",
+    first_name: "",
+    gender: "",
+    id: 1,
+    ip_address: "",
+    last_name: "",
+    total_clicks: 0,
+    total_page_views: 0,
+    updatedAt: ""
+};
 
 export const AppContext = createContext({
     users: [],
     getAllUsers: function () {},
+    getUserById: function () {},
     pageData: {
         lastPage: 1,
         currentPage: 1
     },
-    isLoader: false
+    user: initialUser,
+    isLoader: false,
+    clearUser: function () {}
 });
 
 export const AppContainer = (props = null) => {
@@ -17,6 +33,7 @@ export const AppContainer = (props = null) => {
         lastPage: 1,
         currentPage: 1
     });
+    const [user, setUser] = useState(initialUser);
     const [isLoader, setIsLoader] = useState(false);
 
     const getAllUsers = (page) => {
@@ -39,14 +56,29 @@ export const AppContainer = (props = null) => {
                 setIsLoader(false);
             })
             .catch(e => console.log(e));
-    }
+    };
+
+    const getUserById = id => {
+        setIsLoader(true);
+        getUser(id).then((res) => {
+            setUser(res);
+            setIsLoader(false);
+        });
+    };
+
+    const clearUser = () => {
+        setUser(initialUser);
+    };
 
     return (
         <AppContext.Provider value={{
             users,
+            user,
             getAllUsers,
+            getUserById,
             pageData,
-            isLoader
+            isLoader,
+            clearUser
         }}>
             {props.children}
         </AppContext.Provider>

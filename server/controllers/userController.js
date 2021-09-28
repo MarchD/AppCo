@@ -5,8 +5,6 @@ const {User, UserStatistic} = require('../models/models');
 class UserController {
   async getAll(req, res) {
     const {limit = 16, page = 3} = req.query;
-    console.log(req)
-    console.log(page)
     let offset = page * limit - limit;
 
     const countOfUsers = await User.count();
@@ -48,32 +46,13 @@ class UserController {
 
   async getOne(req, res, next) {
     const {id} = req.params;
-
-    const user = await User.findOne({
-      include: [{
-        model: UserStatistic,
-        attributes: ['clicks', 'page_views']
-      }],
-      where: {id},
-    })
-
-    const parsedUser = JSON.parse(JSON.stringify(user));
-
-    const userStatistic = parsedUser.user_statistics.reduce((acc, statistic) => {
-        acc.total_page_views += statistic.page_views;
-        acc.total_clicks += statistic.clicks;
-
-      return acc;
-    }, {total_page_views: 0, total_clicks: 0});
-
-
-    delete parsedUser.user_statistics;
+    const user = await User.findOne({ where: {id} })
 
     if (!id) {
       return next(ApiError.badRequest('Index not specified'))
     }
 
-    res.json({...parsedUser, ...userStatistic});
+    res.json(user);
   }
 }
 

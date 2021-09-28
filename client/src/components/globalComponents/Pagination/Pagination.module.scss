@@ -4,4 +4,5 @@
 .pagination {
   @include flex-center;
   column-gap: 8px;
+  margin: 20px 0;
 }

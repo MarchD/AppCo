@@ -15,7 +15,7 @@ export const Users = () => {
     }, []);
 
     return (
-        <LayoutUsers crumbs={crumbs} title={'Users statistics'}>
+        <LayoutUsers crumbs={crumbs} title={'User statistics'}>
             {
                 isLoader
                     ? <Loader/>
